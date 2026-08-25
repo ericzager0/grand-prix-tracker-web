@@ -1,15 +1,9 @@
 "use client";
+import Image from "next/image";
 
 /**
  * GrandPrix Tracker — Landing Page
  * ---------------------------------------------------------------
- * Archivo único (page.tsx) para Next.js App Router. Client Component
- * completo: usa hooks para el countdown en vivo, el reveal on-scroll,
- * el header que reacciona al scroll y el mini-form de lista de espera.
- *
- * Requisitos: Next.js 13+ (App Router) y Tailwind CSS ya configurados
- * en el proyecto. No depende de ninguna librería extra (los íconos son
- * SVG inline y las tipografías se cargan con next/font/google).
  *
  * Nota: como este archivo usa 'use client', no puede exportar
  * `metadata` (eso debe ir en layout.tsx o en un page.tsx server-side
@@ -121,7 +115,7 @@ const DESTINATIONS = [
   {
     name: "San Pablo",
     circuit: "Autódromo José Carlos Pace — Interlagos",
-    img: "https://picsum.photos/seed/interlagos-gp/900/1150",
+    img: "/interlagos.svg",
     blurb:
       "Curvas rápidas, tribunas pegadas a la pista y la energía más eléctrica del calendario sudamericano.",
     badge: "Próxima carrera",
@@ -129,7 +123,7 @@ const DESTINATIONS = [
   {
     name: "Mónaco",
     circuit: "Circuito de Mónaco — Monte Carlo",
-    img: "https://picsum.photos/seed/monaco-gp/900/1150",
+    img: "/monaco.svg",
     blurb:
       "El clásico entre yates y balcones. La joya del calendario, sin perderte ni un metro de guardarraíl.",
     badge: "Ícono de la temporada",
@@ -137,7 +131,7 @@ const DESTINATIONS = [
   {
     name: "Austin",
     circuit: "Circuit of the Americas",
-    img: "https://picsum.photos/seed/cota-gp/900/1150",
+    img: "/austin.svg",
     blurb:
       "Peraltes, desnivel y un ambiente que mezcla previa de fútbol americano con paddock de Fórmula 1.",
     badge: "Favorito del público",
@@ -553,7 +547,13 @@ export default function Page() {
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <a href="#inicio" className="flex items-center gap-3">
-            <IconFlagMark className="h-8 w-8" />
+            <Image
+              src="/logo.jpg"
+              alt="GrandPrix Tracker"
+              height={992}
+              width={1072}
+              style={{ width: "30px", height: "auto" }}
+            />
             <span className="flex flex-col leading-none">
               <span
                 className={
@@ -893,10 +893,12 @@ export default function Page() {
           {DESTINATIONS.map((dest, i) => (
             <Reveal key={dest.name} delay={i * 120}>
               <div className="group relative h-[420px] overflow-hidden rounded-md border border-[#1C1D24]">
-                <img
+                <Image
                   src={dest.img}
                   alt={`${dest.circuit}, ${dest.name}`}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  fill
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B10] via-[#0B0B10]/30 to-transparent" />
                 <span
@@ -1080,7 +1082,13 @@ export default function Page() {
           <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
             <div>
               <a href="#inicio" className="flex items-center gap-3">
-                <IconFlagMark className="h-7 w-7" />
+                <Image
+                  src="/logo.jpg"
+                  alt="GrandPrix Tracker"
+                  height={992}
+                  width={1072}
+                  style={{ width: "20px", height: "auto" }}
+                />
                 <span
                   className={
                     display.className + " text-sm font-900 tracking-tight"
