@@ -1,6 +1,4 @@
 "use client";
-import Image from "next/image";
-
 /**
  * GrandPrix Tracker — Landing Page
  * ---------------------------------------------------------------
@@ -28,7 +26,10 @@ import Image from "next/image";
  */
 
 import React, { useEffect, useRef, useState, type ReactNode } from "react";
+import Image from "next/image";
 import { Inter, Titillium_Web, JetBrains_Mono } from "next/font/google";
+import ButtonChecker from "../components/ButtonChecker";
+import ButtonOutline from "../components/ButtonOutline";
 
 const display = Titillium_Web({
   subsets: ["latin"],
@@ -305,26 +306,6 @@ function StatusDot({ ok = true }: { ok?: boolean }) {
   );
 }
 
-/* --- Íconos SVG inline (sin dependencias externas) --- */
-
-function IconFlagMark({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 32 32" className={className} aria-hidden="true">
-      <rect x="1" y="1" width="30" height="30" rx="6" fill="#E10600" />
-      <g fill="#F3F1EA">
-        <rect x="6" y="6" width="5" height="5" />
-        <rect x="16" y="6" width="5" height="5" />
-        <rect x="11" y="11" width="5" height="5" />
-        <rect x="21" y="11" width="5" height="5" />
-        <rect x="6" y="16" width="5" height="5" />
-        <rect x="16" y="16" width="5" height="5" />
-        <rect x="11" y="21" width="5" height="5" />
-        <rect x="21" y="21" width="5" height="5" />
-      </g>
-    </svg>
-  );
-}
-
 function IconMenu({ className = "" }: { className?: string }) {
   return (
     <svg
@@ -356,25 +337,6 @@ function IconClose({ className = "" }: { className?: string }) {
         stroke="currentColor"
         strokeWidth="1.8"
         strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function IconArrow({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      className={className}
-      aria-hidden="true"
-    >
-      <path
-        d="M7 17L17 7M17 7H9M17 7v8"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
       />
     </svg>
   );
@@ -587,12 +549,12 @@ export default function Page() {
           </nav>
 
           <div className="hidden md:block">
-            <a
+            <ButtonChecker
               href="#lista-de-espera"
-              className="gpt-checker-btn inline-flex items-center gap-2 rounded-sm border border-[#E10600] bg-[#E10600] px-4 py-2 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
+              className="px-4 py-2 border border-[#E10600]"
             >
               Sumarme a la lista
-            </a>
+            </ButtonChecker>
           </div>
 
           <button
@@ -621,13 +583,12 @@ export default function Page() {
                   {link.label}
                 </a>
               ))}
-              <a
-                href="#lista-de-espera"
-                onClick={() => setMenuOpen(false)}
-                className="mt-2 inline-flex items-center justify-center rounded-sm bg-[#E10600] px-4 py-2 text-sm font-semibold text-white"
-              >
-                Sumarme a la lista
-              </a>
+              <ButtonChecker
+              href="#lista-de-espera"
+              className="px-4 py-2 border border-[#E10600]"
+            >
+              Sumarme a la lista
+            </ButtonChecker>
             </nav>
           </div>
         )}
@@ -684,19 +645,18 @@ export default function Page() {
 
           <Reveal delay={240}>
             <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
-              <a
+              <ButtonChecker
                 href="#lista-de-espera"
-                className="gpt-checker-btn inline-flex items-center justify-center gap-2 rounded-sm bg-[#E10600] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_0_0_1px_rgba(225,6,0,0.4)] transition-transform hover:-translate-y-0.5"
+                className="px-6 py-3.5 shadow-[0_0_0_1px_rgba(225,6,0,0.4)]"
+                showArrow={true}
               >
                 Sumarme a la lista de espera
-                <IconArrow className="h-4 w-4" />
-              </a>
-              <a
+              </ButtonChecker>
+              <ButtonOutline
                 href="#como-funciona"
-                className="inline-flex items-center justify-center gap-2 rounded-sm border border-[#33343D] px-6 py-3.5 text-sm font-semibold text-[#F3F1EA] transition-colors hover:border-[#7C4DFF] hover:text-white"
               >
                 Ver cómo funciona
-              </a>
+              </ButtonOutline>
             </div>
           </Reveal>
 
@@ -1055,13 +1015,14 @@ export default function Page() {
                     " w-full rounded-sm border border-[#33343D] bg-[#131318] px-4 py-3.5 text-sm text-[#F3F1EA] placeholder-[#5C5D66] outline-none transition-colors focus:border-[#E10600]"
                   }
                 />
-                <button
+                <ButtonChecker
+                  href="#lista-de-espera"
+                  className="px-4 py-2 border border-[#E10600]"
+                  showArrow={true}
                   type="submit"
-                  className="gpt-checker-btn inline-flex shrink-0 items-center justify-center gap-2 rounded-sm bg-[#E10600] px-6 py-3.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
                 >
                   Sumarme
-                  <IconArrow className="h-4 w-4" />
-                </button>
+                </ButtonChecker>
               </form>
             )}
             <p
