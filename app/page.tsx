@@ -3,11 +3,7 @@
  * GrandPrix Tracker — Landing Page
  * ---------------------------------------------------------------
  *
- * Nota: como este archivo usa 'use client', no puede exportar
- * `metadata` (eso debe ir en layout.tsx o en un page.tsx server-side
- * que envuelva a este componente).
- *
- * PALETA (inspirada en F1, no literal):
+ * PALETA F1:
  *   --carbon        #0B0B10   fondo base
  *   --carbon-2      #131318   paneles
  *   --asphalt       #1C1D24   bordes / cards
@@ -21,33 +17,28 @@
  * ---------------------------------------------------------------
  */
 
-import React, { useEffect, useRef, useState, type ReactNode } from "react";
+import React, { useState } from "react";
 import { SERVICES, SERVICE_ICONS } from "../utils/services";
 import { STEPS } from "@/utils/steps";
-import Image from "next/image";
+import { DESTINATIONS } from "@/utils/destinations";
+import { SYSTEM_PANELS } from "@/utils/systemPanels";
 import ButtonChecker from "../components/ButtonChecker";
 import ButtonOutline from "../components/ButtonOutline";
 import Navbar from "@/components/Navbar";
-import IconBus from "@/components/icons/IconBus";
-import IconHotel from "@/components/icons/IconHotel";
-import IconTicket from "@/components/icons/IconTicket";
 import CountdownBoxes from "@/components/CoutdownBoxes";
 import RacesCarrousel from "@/components/RacesCarrousel";
-import Reveal from "@/utils/Reveal";
 import StepsCard from "@/components/StepsCard";
 import StatusDot from "@/components/StatusDot";
 import Eyebrow from "@/components/EyeBrow";
-import DestinationsCard from "@/components/DestinationsCard";
-import { DESTINATIONS } from "@/utils/destinations";
-
-import useScrolled from "@/hooks/useScrolled";
 import ServicesCard from "@/components/ServicesCard";
 import DestinationCard from "@/components/DestinationsCard";
 import SystemPanelCard from "@/components/SystemPanelCard";
-import { SYSTEM_PANELS } from "@/utils/systemPanels";
 import EmailInput from "@/components/EmailInput";
-import Home from "@/components/Home";
 import Footer from "@/components/Footer";
+
+import Reveal from "@/utils/Reveal";
+
+import useScrolled from "@/hooks/useScrolled";
 
 /* ======== DATA =============== */
 /* Aca irian futuros, igual en lo posible separlos en su respectiva carpeta (NO a la gilada)*/
@@ -56,7 +47,6 @@ import Footer from "@/components/Footer";
 /* Aca irian futuros, igual en lo posible separlos en su respectiva carpeta (NO a la gilada)*/
 
 /* ======= PÁGINA =========== */
-
 export default function Page() {
   const scrolled = useScrolled();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -75,62 +65,6 @@ export default function Page() {
         " bg-[#0B0B10] text-[#F3F1EA] antialiased selection:bg-[#E10600] selection:text-white"
       }
     >
-      {/* ---------- Estilos y animaciones a medida ---------- */}
-      <style>{`
-        @keyframes gpt-marquee {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
-        }
-        @keyframes gpt-streak {
-          0% { transform: translateX(-120%) skewX(-12deg); opacity: 0; }
-          12% { opacity: .55; }
-          100% { transform: translateX(220%) skewX(-12deg); opacity: 0; }
-        }
-        @keyframes gpt-flicker {
-          0%, 92%, 100% { opacity: 1; }
-          94% { opacity: .55; }
-          96% { opacity: 1; }
-        }
-        @keyframes gpt-checker-sweep {
-          from { background-position: 0 0; }
-          to { background-position: 56px 0; }
-        }
-        .gpt-marquee-track {
-          animation: gpt-marquee 32s linear infinite;
-        }
-        .gpt-streak {
-          animation: gpt-streak 4.5s ease-in-out infinite;
-        }
-        .gpt-flicker {
-          animation: gpt-flicker 5s ease-in-out infinite;
-        }
-        .gpt-checker-btn {
-          background-image: repeating-linear-gradient(45deg, rgba(243,241,234,.18) 0 7px, transparent 7px 14px);
-          background-size: 56px 14px;
-          background-position: 0 0;
-          transition: background-position .6s ease;
-        }
-        .gpt-checker-btn:hover {
-          animation: gpt-checker-sweep 1.1s linear infinite;
-        }
-        .gpt-carbon {
-          background-image:
-            repeating-linear-gradient(45deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 6px),
-            repeating-linear-gradient(-45deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 6px);
-        }
-        .gpt-hud-grid {
-          background-image:
-            linear-gradient(to right, rgba(243,241,234,0.05) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(243,241,234,0.05) 1px, transparent 1px);
-          background-size: 40px 40px;
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .gpt-marquee-track, .gpt-streak, .gpt-flicker, .gpt-checker-btn:hover {
-            animation: none !important;
-          }
-        }
-      `}</style>
-
       {/* ================= HEADER ================= */}
       <Navbar scrolled={scrolled} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 

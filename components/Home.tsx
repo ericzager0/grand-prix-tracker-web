@@ -4,7 +4,7 @@ export default function Home() {
     return(
         <a href="#inicio" className="flex items-center gap-3">
             <Image
-                src="/logo.jpg"
+                src="/logo-nobg.png"
                 alt="GrandPrix Tracker"
                 height={992}
                 width={1072}
