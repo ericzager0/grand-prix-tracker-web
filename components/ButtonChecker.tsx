@@ -19,7 +19,7 @@ export default function ButtonChecker({
   showArrow = false,
 }: ButtonCheckerProps) {
   const baseClasses =
-    "gpt-checker-btn inline-flex shrink-0 items-center justify-center gap-2 rounded-sm bg-[#E10600] text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 " +
+    "gpt-checker-btn inline-flex shrink-0 items-center justify-center gap-2 rounded-sm bg-[#E10600] text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 cursor-pointer " +
     className;
 
   if (href) {

@@ -10,7 +10,7 @@ export interface ServicesCardProps {
 
 export default function ServicesCard({ service, Icon }: ServicesCardProps) {
     return (
-      <div className="group relative h-full overflow-hidden rounded-md border border-[#1C1D24] bg-[#131318] p-8 transition-colors hover:border-[#E10600]/50">
+      <div className="group relative h-full overflow-hidden rounded-md border border-[#1C1D24] bg-[#131318] p-8 transition-colors hover:border-[#E10600]/50 cursor-pointer">
         <div className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-[#E10600] transition-transform duration-500 group-hover:scale-x-100" />
         <Icon className="h-8 w-8 text-[#E10600]" />
         <h3

@@ -1,32 +1,45 @@
 import Image from "next/image";
 
-export default function Home() {
-    return(
-        <a href="#inicio" className="flex items-center gap-3">
-            <Image
-                src="/logo-nobg.png"
-                alt="GrandPrix Tracker"
-                height={992}
-                width={1072}
-                style={{ width: "30px", height: "auto" }}
-            />
-            <span className="flex flex-col leading-none">
-            <span
-                className={
-                    "font-display" + " text-[15px] font-900 tracking-tight"
-                }
-            >
-                GRAND<span className="text-[#E10600]">PRIX</span>
-            </span>
-            <span
-                className={
-                    "font-mono" +
-                    " text-[9px] tracking-[0.35em] text-[#93949F]"
-                }
-            >
-                TRACKER
-            </span>
-            </span>
-        </a>
-    );
-};
+interface HomeProps {
+  isLarge?: boolean;
+}
+
+export default function Home({ isLarge = false }: HomeProps) {
+  const containerClasses = isLarge
+    ? "flex items-center justify-center gap-4 md:gap-5 w-full"
+    : "flex items-center gap-3 transition-transform hover:scale-105";
+
+  const imageWidth = isLarge ? "w-20 md:w-24" : "w-[30px]";
+  
+  const titleClasses = isLarge
+    ? "text-4xl md:text-5xl"
+    : "text-[15px]";
+
+  const subtitleClasses = isLarge
+    ? "mt-2 text-xs md:text-sm"
+    : "text-[9px]";
+
+  return (
+    <a href="/" className={containerClasses}>
+      <Image
+        src="/logo-nobg.png"
+        alt="GrandPrix Tracker"
+        height={992}
+        width={1072}
+        className={`${imageWidth} h-auto shrink-0`}
+      />
+      <span className="flex flex-col justify-center leading-none">
+        <span
+          className={`font-display font-900 tracking-tight ${titleClasses} text-[#F3F1EA]`}
+        >
+          GRAND<span className="text-[#E10600]">PRIX</span>
+        </span>
+        <span
+          className={`font-mono tracking-[0.35em] text-[#93949F] ${subtitleClasses}`}
+        >
+          TRACKER
+        </span>
+      </span>
+    </a>
+  );
+}

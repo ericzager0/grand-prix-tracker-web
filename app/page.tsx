@@ -344,12 +344,24 @@ export default function Page() {
                 ¡Anotado en la grilla! Te escribimos apenas larguemos.
               </div>
             ) : (
-              <EmailInput 
-                email={email}
-                setEmail={setEmail}
-                onSubmit={handleWaitlistSubmit}
-                buttonText="Sumarme"
-              />
+              <div className="mx-auto flex w-full max-w-md flex-col items-center gap-3 sm:flex-row">
+                <form
+                  onSubmit={handleWaitlistSubmit}
+                  className="mx-auto flex w-full max-w-md flex-col gap-3 sm:flex-row"
+                >
+                  <EmailInput 
+                    email={email}
+                    setEmail={setEmail}
+                  />
+                  <ButtonChecker
+                    className="px-6 py-3.5"
+                    showArrow={true}
+                    type="submit"
+                  >
+                    Submit
+                  </ButtonChecker>
+                </form>
+              </div>
             )}
             <p className="font-mono mt-4 text-[10px] tracking-[0.15em] text-[#5C5D66]">
               SIN SPAM · SOLO NOVEDADES DEL LANZAMIENTO

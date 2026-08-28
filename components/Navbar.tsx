@@ -1,10 +1,12 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
-import ButtonChecker from "./ButtonChecker";
-import Image from "next/image";
+import { useRouter } from "next/navigation";
 import IconClose from "./icons/IconClose";
 import IconMenu from "./icons/IconMenu";
 import { NAV_LINKS } from "@/utils/NavLinks";
 import Home from "./Home";
+import ProfileCircle from "./ProfileCircle";
 
 export interface NavbarProps {
     scrolled: boolean;
@@ -13,6 +15,10 @@ export interface NavbarProps {
 };
 
 export default function Navbar({scrolled, menuOpen, setMenuOpen}: NavbarProps) {
+    const router = useRouter();
+
+    const isLoggedIn = false; // Replace with actual authentication logic
+
     return (
         <header
             className={
@@ -39,12 +45,11 @@ export default function Navbar({scrolled, menuOpen, setMenuOpen}: NavbarProps) {
             </nav>
 
             <div className="hidden md:block">
-                <ButtonChecker
-                    href="#lista-de-espera"
-                    className="px-4 py-2 border border-[#E10600]"
-                >
-                    Sumarme a la lista
-                </ButtonChecker>
+                <ProfileCircle 
+                    isLoggedIn={isLoggedIn} 
+                    name="Octavio Cosentino" 
+                    onLoginClick={() => router.push("/login")}
+                />
             </div>
 
             <button
@@ -74,12 +79,11 @@ export default function Navbar({scrolled, menuOpen, setMenuOpen}: NavbarProps) {
                         {link.label}
                     </a>
                     ))}
-                    <ButtonChecker
-                    href="#lista-de-espera"
-                    className="px-4 py-2 border border-[#E10600]"
-                >
-                    Sumarme a la lista
-                </ButtonChecker>
+                    <ProfileCircle 
+                        isLoggedIn={isLoggedIn} 
+                        name="Octavio Cosentino" 
+                        onLoginClick={() => router.push("/login")}
+                    />
                 </nav>
                 </div>
             )}

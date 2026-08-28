@@ -12,7 +12,7 @@ export interface DestinationCardProps {
 
 export default function DestinationCard({ dest }: DestinationCardProps) {
     return (
-        <div className="group relative h-[420px] overflow-hidden rounded-md border border-[#1C1D24]">
+        <div className="group relative h-[420px] overflow-hidden rounded-md border border-[#1C1D24] cursor-pointer">
             <Image
                 src={dest.img}
                 alt={`${dest.circuit}, ${dest.name}`}
