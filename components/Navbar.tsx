@@ -17,7 +17,7 @@ export interface NavbarProps {
 export default function Navbar({scrolled, menuOpen, setMenuOpen}: NavbarProps) {
     const router = useRouter();
 
-    const isLoggedIn = false; // Replace with actual authentication logic
+    const isLoggedIn = true; // Replace with actual authentication logic
 
     return (
         <header
@@ -49,6 +49,7 @@ export default function Navbar({scrolled, menuOpen, setMenuOpen}: NavbarProps) {
                     isLoggedIn={isLoggedIn} 
                     name="Octavio Cosentino" 
                     onLoginClick={() => router.push("/login")}
+                    onProfileClick={() => router.push("/profile")}
                 />
             </div>
 
@@ -83,6 +84,7 @@ export default function Navbar({scrolled, menuOpen, setMenuOpen}: NavbarProps) {
                         isLoggedIn={isLoggedIn} 
                         name="Octavio Cosentino" 
                         onLoginClick={() => router.push("/login")}
+                        onProfileClick={() => router.push("/profile")}
                     />
                 </nav>
                 </div>

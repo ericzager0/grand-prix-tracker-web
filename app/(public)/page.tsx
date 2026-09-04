@@ -18,12 +18,12 @@
  */
 
 import React, { useState } from "react";
-import { SERVICES, SERVICE_ICONS } from "../utils/services";
-import { STEPS } from "@/utils/steps";
-import { DESTINATIONS } from "@/utils/destinations";
-import { SYSTEM_PANELS } from "@/utils/systemPanels";
-import ButtonChecker from "../components/ButtonChecker";
-import ButtonOutline from "../components/ButtonOutline";
+import { SERVICES, SERVICE_ICONS } from "../../utils/services";
+import { STEPS } from "@/utils/mockData/steps";
+import { DESTINATIONS } from "@/utils/mockData/destinations";
+import { SYSTEM_PANELS } from "@/utils/mockData/systemPanels";
+import ButtonChecker from "../../components/ButtonChecker";
+import ButtonOutline from "../../components/ButtonOutline";
 import Navbar from "@/components/Navbar";
 import CountdownBoxes from "@/components/CoutdownBoxes";
 import RacesCarrousel from "@/components/RacesCarrousel";
@@ -36,7 +36,7 @@ import SystemPanelCard from "@/components/SystemPanelCard";
 import EmailInput from "@/components/EmailInput";
 import Footer from "@/components/Footer";
 
-import Reveal from "@/utils/Reveal";
+import Reveal from "@/components/Reveal";
 
 import useScrolled from "@/hooks/useScrolled";
 
@@ -369,9 +369,6 @@ export default function Page() {
           </Reveal>
         </div>
       </section>
-
-      {/* ================= FOOTER ================= */}
-      <Footer />
     </div>
   );
 }

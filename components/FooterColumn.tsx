@@ -1,3 +1,4 @@
+import Link from "next/dist/client/link";
 import React from "react";
 
 interface LinkItem {
@@ -19,9 +20,9 @@ export default function FooterColumn({ title, links }: FooterColumnProps) {
       <ul className="mt-4 space-y-2 text-sm text-[#93949F]">
         {links.map((link, index) => (
           <li key={index}>
-            <a href={link.href} className="hover:text-[#F3F1EA] transition-colors">
+            <Link href={link.href} className="hover:text-[#F3F1EA] transition-colors">
               {link.label}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

@@ -1,0 +1,17 @@
+export const LOGOS_DICT: Record<string, any> = {
+  'mastercard': require('../public/banks/mastercard.png'),
+  'visa': require('../public/banks/visa.png'),
+  'icbc': require('../public/banks/icbc.png'),
+  'naranja': require('../public/banks/naranja.png'),
+  'bna': require('../public/banks/banco_nacion.png'),
+  'banco nacion': require('../public/banks/banco_nacion.png'),
+  'santander': require('../public/banks/santander.png'),
+  'mercado pago': require('../public/banks/mercado_pago.png'),
+  'brubank': require('../public/banks/brubank.png'),
+  'uala': require('../public/banks/uala.png'),
+  'amex': require('../public/banks/amex.png'),
+  'ammex': require('../public/banks/amex.png'),
+  'american express': require('../public/banks/amex.png'),
+  'argencard': require('../public/banks/argenCard.png'),
+  'cabal': require('../public/banks/cabal.png'),
+};

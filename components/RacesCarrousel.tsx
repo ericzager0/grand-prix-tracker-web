@@ -1,4 +1,4 @@
-import { CALENDAR_TICKER } from "@/utils/races"; 
+import { CALENDAR_TICKER } from "@/utils/mockData/races"; 
 import StatusDot from "./StatusDot"; 
 import { isToday } from "@/utils/isToday";
 
