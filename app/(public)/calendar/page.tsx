@@ -17,9 +17,13 @@ export default function CalendarPage() {
     
     const regionMatch = selectedRegion === "Todos" || race.region === selectedRegion;
     const monthMatch = selectedMonth === null || raceMonth === selectedMonth;
-    const nameMatch = race.name.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    const searchLower = searchQuery.toLowerCase();
+    const textMatch = 
+      race.name.toLowerCase().includes(searchLower) || 
+      race.circuit.toLowerCase().includes(searchLower);
 
-    return regionMatch && monthMatch && nameMatch;
+    return regionMatch && monthMatch && textMatch;
   }).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
   const handleClearFilters = () => {
