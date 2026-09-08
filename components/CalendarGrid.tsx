@@ -1,17 +1,22 @@
 import React from "react";
 import DestinationCard from "./DestinationsCard"; 
 import { Race } from "@/utils/races";
+import SearchBar from "./SearchBar";
 
 interface CalendarGridProps {
   currentYear: number;
   filteredRaces: Race[];
   onClearFilters: () => void;
+  searchQuery: string;
+  onSearchChange: (query: string) => void;
 }
 
 export default function CalendarGrid({
   currentYear,
   filteredRaces,
   onClearFilters,
+  searchQuery,
+  onSearchChange,
 }: CalendarGridProps) {
   return (
     <main className="flex-grow">
@@ -22,7 +27,10 @@ export default function CalendarGrid({
         <h1 className="font-display mt-2 text-4xl font-900 tracking-tight sm:text-5xl">
           Calendario {currentYear}
         </h1>
-        <p className="mt-3 text-sm text-[#93949F]">
+        
+        <SearchBar value={searchQuery} onChange={onSearchChange} />
+
+        <p className="mt-4 text-sm text-[#93949F]">
           {filteredRaces.length} {filteredRaces.length === 1 ? "carrera encontrada" : "carreras encontradas"}.
         </p>
       </div>
@@ -36,17 +44,23 @@ export default function CalendarGrid({
           ))}
         </div>
       ) : (
-        <div className="flex h-64 flex-col items-center justify-center rounded-md border border-dashed border-[#33343D] bg-[#0E0E13]">
-          <span className="text-4xl">🏁</span>
-          <p className="mt-4 font-mono text-xs tracking-widest text-[#93949F]">
-            NO HAY CARRERAS EN ESTE SECTOR
-          </p>
-          <button 
-            onClick={onClearFilters}
-            className="mt-4 text-sm font-semibold text-[#E10600] hover:underline"
-          >
-            Limpiar filtros
-          </button>
+        <div className="relative flex h-64 flex-col items-center justify-center overflow-hidden rounded-md border border-dashed border-[#33343D] bg-[#0E0E13]">
+          <div 
+            className="absolute inset-0 z-0 bg-cover bg-center opacity-30 grayscale"
+            style={{ backgroundImage: "url('/empty.png')" }}
+          />
+          <div className="relative z-10 flex flex-col items-center">
+            <p className="mt-4 font-mono text-s tracking-widest text-[#ffffff]">
+              NO HAY CARRERAS EN ESTE SECTOR
+            </p>
+            <button 
+              onClick={onClearFilters}
+              className="mt-4 text-m font-bold text-[#f10b03] hover:underline cursor-pointer"
+            >
+              Limpiar filtros
+            </button>
+          </div>
+          
         </div>
       )}
     </main>

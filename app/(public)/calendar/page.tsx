@@ -9,6 +9,7 @@ export default function CalendarPage() {
   const currentYear = new Date().getFullYear();
   const [selectedRegion, setSelectedRegion] = useState("Todos");
   const [selectedMonth, setSelectedMonth] = useState<number | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Filtrado y Ordenamiento
   const filteredRaces = F1_CALENDAR_2026.filter((race) => {
@@ -16,13 +17,15 @@ export default function CalendarPage() {
     
     const regionMatch = selectedRegion === "Todos" || race.region === selectedRegion;
     const monthMatch = selectedMonth === null || raceMonth === selectedMonth;
+    const nameMatch = race.name.toLowerCase().includes(searchQuery.toLowerCase());
 
-    return regionMatch && monthMatch;
+    return regionMatch && monthMatch && nameMatch;
   }).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
   const handleClearFilters = () => {
     setSelectedRegion("Todos");
     setSelectedMonth(null);
+    setSearchQuery("");
   };
 
   return (
@@ -43,6 +46,8 @@ export default function CalendarPage() {
           currentYear={currentYear}
           filteredRaces={filteredRaces}
           onClearFilters={handleClearFilters}
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
         />
 
       </div>
