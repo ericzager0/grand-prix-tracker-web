@@ -25,20 +25,19 @@ import { SYSTEM_PANELS } from "@/utils/mockData/systemPanels";
 import ButtonChecker from "../../components/ButtonChecker";
 import ButtonOutline from "../../components/ButtonOutline";
 import Navbar from "@/components/Navbar";
-import CountdownBoxes from "@/components/CoutdownBoxes";
 import RacesCarrousel from "@/components/RacesCarrousel";
 import StepsCard from "@/components/StepsCard";
-import StatusDot from "@/components/StatusDot";
 import Eyebrow from "@/components/EyeBrow";
 import ServicesCard from "@/components/ServicesCard";
 import DestinationCard from "@/components/DestinationsCard";
 import SystemPanelCard from "@/components/SystemPanelCard";
 import EmailInput from "@/components/EmailInput";
-import Footer from "@/components/Footer";
+import CountdownGp from "@/components/CountdownGp";
 
 import Reveal from "@/components/Reveal";
 
 import useScrolled from "@/hooks/useScrolled";
+import Link from "next/dist/client/link";
 
 /* ======== DATA =============== */
 /* Aca irian futuros, igual en lo posible separlos en su respectiva carpeta (NO a la gilada)*/
@@ -118,11 +117,11 @@ export default function Page() {
           <Reveal delay={240}>
             <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
               <ButtonChecker
-                href="#lista-de-espera"
+                href="/calendar"
                 className="px-6 py-3.5 shadow-[0_0_0_1px_rgba(225,6,0,0.4)]"
                 showArrow={true}
               >
-                Sumarme a la lista de espera
+                Empieza y reservá tu paquete!
               </ButtonChecker>
               <ButtonOutline
                 href="#como-funciona"
@@ -134,39 +133,7 @@ export default function Page() {
 
           {/* ---- Countdown / HUD de telemetría ---- */}
           <Reveal delay={320} className="mt-16">
-            <div className="gpt-hud-grid relative overflow-hidden rounded-md border border-[#1C1D24] bg-[#131318]/80 p-6 md:p-8">
-              <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <StatusDot />
-                    <span
-                      className={
-                        "font-mono" +
-                        " text-[11px] tracking-[0.3em] text-[#93949F]"
-                      }
-                    >
-                      EN VIVO · PRÓXIMA LARGADA
-                    </span>
-                  </div>
-                  <p
-                    className={
-                     "font-display mt-2 text-xl font-700 md:text-2xl"
-                    }
-                  >
-                    GP de Italia{" "}
-                    <span className="text-[#93949F]">— Monza</span>
-                  </p>
-                </div>
-
-                <CountdownBoxes />
-              </div>
-              <p
-                className={"font-mono" + " mt-4 text-[10px] text-[#5C5D66]"}
-              >
-                * fecha ilustrativa mientras el proyecto está en desarrollo — se
-                conecta al calendario oficial
-              </p>
-            </div>
+             <CountdownGp />
           </Reveal>
         </div>
       </section>
@@ -235,22 +202,36 @@ export default function Page() {
         id="calendario"
         className="mx-auto max-w-7xl px-6 py-24 md:py-32"
       >
-        <Reveal>
-          <Eyebrow>Próximas paradas</Eyebrow>
-          <h2
-            className={
-              "font-display" +
-              " mt-4 max-w-2xl text-3xl font-900 tracking-tight md:text-5xl"
-            }
-          >
-            Elegí el circuito, nosotros el resto.
-          </h2>
-        </Reveal>
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <Reveal>
+            <Eyebrow>Próximas paradas</Eyebrow>
+            <h2 className="font-display mt-4 max-w-2xl text-3xl font-900 tracking-tight md:text-5xl">
+              Elegí el circuito, nosotros el resto.
+            </h2>
+          </Reveal>
+
+          <Reveal delay={150}>
+            <Link
+              href="/calendar"
+              className="group inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-widest text-[#93949F] transition-colors hover:text-[#F3F1EA]"
+            >
+              Ver calendario completo
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 24 24" 
+                fill="currentColor" 
+                className="h-4 w-4 text-white transition-transform duration-300 group-hover:translate-x-1"
+              >
+                <path fillRule="evenodd" d="M12.97 3.97a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06l6.22-6.22H3a.75.75 0 0 1 0-1.5h16.19l-6.22-6.22a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
+              </svg>
+            </Link>
+          </Reveal>
+        </div>
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {DESTINATIONS.map((dest, i) => (
             <Reveal key={dest.name} delay={i * 120}>
-              <DestinationCard dest={dest} />
+              <DestinationCard name={dest.name} img={dest.img} circuit={dest.circuit} badge={dest.badge} blurb={dest.blurb} />
             </Reveal>
           ))}
         </div>

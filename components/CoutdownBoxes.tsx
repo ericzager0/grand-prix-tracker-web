@@ -1,9 +1,7 @@
 import useCountdown from "../hooks/useCoutdown";
 
-export default function CountdownBoxes() {
-    // Fecha ilustrativa (placeholder) para el próximo GP — en producción
-    // esto vendría del backend / API de calendario, no hardcodeado.
-    const nextRaceTarget = new Date("2026-09-06T10:00:00-03:00").getTime();
+export default function CountdownBoxes({ date }: { date: string }) {
+    const nextRaceTarget = new Date(date).getTime();
     const { days, hours, minutes, seconds } = useCountdown(nextRaceTarget);
 
     return (
