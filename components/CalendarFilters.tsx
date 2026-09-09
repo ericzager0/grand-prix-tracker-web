@@ -1,10 +1,24 @@
 import React from "react";
 
-const REGIONS = ["Todos", "Norteamérica", "Europa", "Asia", "Medio Oriente", "Latinoamérica"];
+const REGIONS = [
+  "Todos",
+  "Norteamérica",
+  "Europa",
+  "Asia",
+  "Medio Oriente",
+  "Latinoamérica",
+];
 const MONTHS = [
-  { id: 3, label: "MAR" }, { id: 4, label: "ABR" }, { id: 5, label: "MAY" },
-  { id: 6, label: "JUN" }, { id: 7, label: "JUL" }, { id: 8, label: "AGO" },
-  { id: 9, label: "SEP" }, { id: 10, label: "OCT" }, { id: 11, label: "NOV" }
+  { id: 3, label: "MAR" },
+  { id: 4, label: "ABR" },
+  { id: 5, label: "MAY" },
+  { id: 6, label: "JUN" },
+  { id: 7, label: "JUL" },
+  { id: 8, label: "AGO" },
+  { id: 9, label: "SEP" },
+  { id: 10, label: "OCT" },
+  { id: 11, label: "NOV" },
+  { id: 12, label: "DIC" },
 ];
 
 interface CalendarFiltersProps {
@@ -28,7 +42,7 @@ export default function CalendarFilters({
         <h2 className="font-display mb-6 text-xl font-900 tracking-tight">
           Filtros de Pista
         </h2>
-        
+
         <div className="mb-8">
           <h3 className="font-mono mb-3 text-[10px] uppercase tracking-[0.15em] text-[#5C5D66]">
             Región
@@ -59,7 +73,7 @@ export default function CalendarFilters({
               Mes ({currentYear})
             </h3>
             {selectedMonth !== null && (
-              <button 
+              <button
                 onClick={() => setSelectedMonth(null)}
                 className="font-mono text-[9px] uppercase text-[#E10600] hover:underline"
               >
@@ -67,7 +81,7 @@ export default function CalendarFilters({
               </button>
             )}
           </div>
-          
+
           <div className="grid grid-cols-3 gap-2">
             {MONTHS.map((month) => {
               const isActive = selectedMonth === month.id;
@@ -91,4 +105,3 @@ export default function CalendarFilters({
     </aside>
   );
 }
-
