@@ -62,22 +62,25 @@ export default function CalendarGrid({
       {isLoading ? (
         <CalendarSkeleton count={6} />
       ) : error ? (
-        <div className="relative flex flex-col items-center justify-center rounded-md border border-red-900/40 bg-[#0E0E13] p-12 text-center shadow-xl">
-          <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-red-950/50 text-[#E10600] border border-red-800/40">
-            <span className="font-mono text-xl font-bold">!</span>
+        <div className="relative flex h-64 flex-col items-center justify-center overflow-hidden rounded-md border border-dashed border-[#33343D] bg-[#0E0E13]">
+          <div
+            className="absolute inset-0 z-0 bg-cover bg-center opacity-30 grayscale"
+            style={{ backgroundImage: "url('/crash.jpg')" }}
+          />
+          <div className="relative z-10 flex flex-col items-center text-center px-4">
+            <p className="mt-4 font-mono text-sm uppercase tracking-widest text-[#ffffff]">
+              No se pudieron cargar los eventos
+            </p>
+            <p className="mt-2 font-mono text-xs text-[#93949F]">{error}</p>
+            {onRetry && (
+              <button
+                onClick={onRetry}
+                className="mt-4 text-base font-bold text-[#f10b03] hover:underline cursor-pointer"
+              >
+                Reintentar conexión
+              </button>
+            )}
           </div>
-          <h3 className="font-display text-xl font-bold text-[#F3F1EA]">
-            No se pudieron cargar los eventos
-          </h3>
-          <p className="mt-2 max-w-md text-sm text-[#93949F]">{error}</p>
-          {onRetry && (
-            <button
-              onClick={onRetry}
-              className="mt-6 rounded-sm bg-[#E10600] px-6 py-2.5 font-mono text-xs uppercase tracking-widest text-white transition-colors hover:bg-[#b50500] cursor-pointer"
-            >
-              Reintentar conexión
-            </button>
-          )}
         </div>
       ) : filteredRaces.length > 0 ? (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
