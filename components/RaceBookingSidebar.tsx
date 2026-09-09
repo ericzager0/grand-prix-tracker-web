@@ -4,11 +4,12 @@ import { isLogged } from "@/utils/mockData/isLogged";
 import { useRouter } from "next/navigation";
 
 interface RaceBookingSidebarProps {
+  id: string;
   name: string;
   hasPassed: boolean;
 }
 
-export default function RaceBookingSidebar({ name, hasPassed }: RaceBookingSidebarProps) {
+export default function RaceBookingSidebar({ id, name, hasPassed }: RaceBookingSidebarProps) {
   const router = useRouter();
 
   const handleBookingClick = () => {
@@ -17,7 +18,7 @@ export default function RaceBookingSidebar({ name, hasPassed }: RaceBookingSideb
     if (!isLogged) {
       router.push("/login");
     } else {
-      // Do nothing for now
+      router.push(`/booking/${id}/hotels`);
     }
   };
 

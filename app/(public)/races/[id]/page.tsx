@@ -56,7 +56,7 @@ export default function RaceDetailPage({ params }: { params: Promise<{ id: strin
 
       <div className="relative z-10 mx-auto mt-8 flex max-w-7xl flex-col gap-8 px-6 pb-24 lg:flex-row">
         <RaceDetailsPanel blurb={race.blurb} />
-        <RaceBookingSidebar name={race.name} hasPassed={hasPassed} />
+        <RaceBookingSidebar id={race.id} name={race.name} hasPassed={hasPassed} />
       </div>
     </div>
   );
