@@ -14,10 +14,10 @@ export interface NavbarProps {
     setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+import { isLogged } from "@/utils/mockData/isLogged";
+
 export default function Navbar({scrolled, menuOpen, setMenuOpen}: NavbarProps) {
     const router = useRouter();
-
-    const isLoggedIn = false; // Replace with actual authentication logic
 
     return (
         <header
@@ -46,7 +46,7 @@ export default function Navbar({scrolled, menuOpen, setMenuOpen}: NavbarProps) {
 
             <div className="hidden md:block">
                 <ProfileCircle 
-                    isLoggedIn={isLoggedIn} 
+                    isLoggedIn={isLogged} 
                     name="Octavio Cosentino" 
                     onLoginClick={() => router.push("/login")}
                     onProfileClick={() => router.push("/profile")}
@@ -81,7 +81,7 @@ export default function Navbar({scrolled, menuOpen, setMenuOpen}: NavbarProps) {
                     </a>
                     ))}
                     <ProfileCircle 
-                        isLoggedIn={isLoggedIn} 
+                        isLoggedIn={isLogged} 
                         name="Octavio Cosentino" 
                         onLoginClick={() => router.push("/login")}
                         onProfileClick={() => router.push("/profile")}

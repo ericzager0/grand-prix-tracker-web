@@ -1,5 +1,7 @@
 import React from "react";
 import ButtonChecker from "./ButtonChecker";
+import { isLogged } from "@/utils/mockData/isLogged";
+import { useRouter } from "next/navigation";
 
 interface RaceBookingSidebarProps {
   name: string;
@@ -7,6 +9,18 @@ interface RaceBookingSidebarProps {
 }
 
 export default function RaceBookingSidebar({ name, hasPassed }: RaceBookingSidebarProps) {
+  const router = useRouter();
+
+  const handleBookingClick = () => {
+    if (hasPassed) return;
+    
+    if (!isLogged) {
+      router.push("/login");
+    } else {
+      // Do nothing for now
+    }
+  };
+
   return (
     <aside className="w-full shrink-0 lg:w-96">
       <div className="sticky top-28 rounded-md border border-[#1C1D24] bg-[#0E0E13] p-8 shadow-xl">
@@ -23,8 +37,9 @@ export default function RaceBookingSidebar({ name, hasPassed }: RaceBookingSideb
           className="w-full py-4 font-mono text-[11px] uppercase tracking-widest" 
           showArrow={!hasPassed} 
           disabled={hasPassed}
+          onClick={handleBookingClick}
         >
-          {hasPassed ? "Reservas cerradas" : "Reservar Paquete"}
+          {hasPassed ? "Reservas cerradas" : (!isLogged ? "Inicia sesión para reservar" : "Reservar Paquete")}
         </ButtonChecker>
 
         <p className="mt-4 text-center font-mono text-[10px] tracking-wider text-[#5C5D66]">
