@@ -25,6 +25,7 @@ import { SYSTEM_PANELS } from "@/utils/mockData/systemPanels";
 import { F1_CALENDAR_2026 } from "@/utils/races";
 import ButtonChecker from "../../components/ButtonChecker";
 import ButtonOutline from "../../components/ButtonOutline";
+import FeedbackSection from "@/components/FeedbackSection";
 import Navbar from "@/components/Navbar";
 import RacesCarrousel from "@/components/RacesCarrousel";
 import StepsCard from "@/components/StepsCard";
@@ -50,17 +51,8 @@ import Link from "next/dist/client/link";
 export default function Page() {
   const scrolled = useScrolled();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-
   const today = new Date();
   const nextRace = F1_CALENDAR_2026.find(race => new Date(race.date) >= today) || F1_CALENDAR_2026[0];
-
-  function handleWaitlistSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!email.trim()) return;
-    setSubmitted(true);
-  }
 
   return (
     <div
@@ -317,62 +309,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ================= LISTA DE ESPERA ================= */}
-      <section
-        id="lista-de-espera"
-        className="relative overflow-hidden border-t border-[#1C1D24] py-24 md:py-32"
-      >
-        <div className="pointer-events-none absolute -bottom-40 left-1/2 h-[420px] w-[800px] -translate-x-1/2 rounded-full bg-[#7C4DFF]/15 blur-[120px]" />
-        <div className="relative mx-auto max-w-3xl px-6 text-center">
-          <Reveal>
-            <Eyebrow>Todavía en boxes</Eyebrow>
-            <h2
-              className={
-                "font-display" +
-                " mt-4 text-3xl font-900 tracking-tight md:text-5xl"
-              }
-            >
-              Antes de la largada, sumate.
-            </h2>
-            <p className="mt-4 text-[#93949F]">
-              GrandPrix Tracker está en construcción. Dejanos tu mail y sé de
-              los primeros en armar tu paquete al circuito cuando abramos la
-              pista.
-            </p>
-          </Reveal>
-
-          <Reveal delay={120} className="mt-8">
-            {submitted ? (
-              <div className="mx-auto flex max-w-md items-center justify-center gap-3 rounded-md border border-emerald-400/30 bg-emerald-400/10 px-6 py-4 text-sm text-emerald-300">
-                <span className="text-lg">🏁</span>
-                ¡Anotado en la grilla! Te escribimos apenas larguemos.
-              </div>
-            ) : (
-              <div className="mx-auto flex w-full max-w-md flex-col items-center gap-3 sm:flex-row">
-                <form
-                  onSubmit={handleWaitlistSubmit}
-                  className="mx-auto flex w-full max-w-md flex-col gap-3 sm:flex-row"
-                >
-                  <EmailInput 
-                    email={email}
-                    setEmail={setEmail}
-                  />
-                  <ButtonChecker
-                    className="px-6 py-3.5"
-                    showArrow={true}
-                    type="submit"
-                  >
-                    Submit
-                  </ButtonChecker>
-                </form>
-              </div>
-            )}
-            <p className="font-mono mt-4 text-[10px] tracking-[0.15em] text-[#5C5D66]">
-              SIN SPAM · SOLO NOVEDADES DEL LANZAMIENTO
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      <FeedbackSection />
     </div>
   );
 }
