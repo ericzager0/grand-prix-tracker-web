@@ -13,8 +13,7 @@ export default function Footer() {
             <Home />
             <p className="mt-4 max-w-xs text-sm text-[#5C5D66]">
               Entradas, hotel y traslados para tu próximo Gran Premio, en un
-              solo lugar. Nombre preliminar del proyecto — todavía en
-              desarrollo.
+              solo lugar.
             </p>
           </div>
 
@@ -29,7 +28,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-[#1C1D24] pt-6 text-xs text-[#5C5D66] sm:flex-row">
           <p>
-            © {new Date().getFullYear()} GrandPrix Tracker. Proyecto en etapa de diseño.
+            © {new Date().getFullYear()} GrandPrix Tracker
           </p>
           <p className="font-mono tracking-[0.2em]">
             P1 · SIEMPRE EN CARRERA

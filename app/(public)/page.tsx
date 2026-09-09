@@ -22,6 +22,7 @@ import { SERVICES, SERVICE_ICONS } from "../../utils/services";
 import { STEPS } from "@/utils/mockData/steps";
 import { DESTINATIONS } from "@/utils/mockData/destinations";
 import { SYSTEM_PANELS } from "@/utils/mockData/systemPanels";
+import { F1_CALENDAR_2026 } from "@/utils/races";
 import ButtonChecker from "../../components/ButtonChecker";
 import ButtonOutline from "../../components/ButtonOutline";
 import Navbar from "@/components/Navbar";
@@ -51,6 +52,9 @@ export default function Page() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+
+  const today = new Date();
+  const nextRace = F1_CALENDAR_2026.find(race => new Date(race.date) >= today) || F1_CALENDAR_2026[0];
 
   function handleWaitlistSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -229,9 +233,28 @@ export default function Page() {
         </div>
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
+          {/* Próxima Parada (Card 1) */}
+          <Reveal delay={0}>
+            <DestinationCard 
+              id={nextRace.id}
+              name={nextRace.name} 
+              img={nextRace.img} 
+              circuit={nextRace.circuit} 
+              badge="PRÓXIMA PARADA" 
+              blurb={nextRace.blurb} 
+            />
+          </Reveal>
+
+          {/* Cards from DESTINATIONS (Cards 2 & 3) */}
           {DESTINATIONS.map((dest, i) => (
-            <Reveal key={dest.name} delay={i * 120}>
-              <DestinationCard name={dest.name} img={dest.img} circuit={dest.circuit} badge={dest.badge} blurb={dest.blurb} />
+            <Reveal key={dest.name} delay={(i + 1) * 120}>
+              <DestinationCard 
+                name={dest.name} 
+                img={dest.img} 
+                circuit={dest.circuit} 
+                badge={dest.badge} 
+                blurb={dest.blurb} 
+              />
             </Reveal>
           ))}
         </div>

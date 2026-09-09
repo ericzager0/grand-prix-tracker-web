@@ -1,6 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export interface DestinationCardProps {
+    id?: string;
     name: string;
     img: string;
     circuit: string;
@@ -8,8 +10,8 @@ export interface DestinationCardProps {
     blurb: string;
 }
 
-export default function DestinationCard({ name, img, circuit, badge, blurb }: DestinationCardProps) {
-    return (
+export default function DestinationCard({ id, name, img, circuit, badge, blurb }: DestinationCardProps) {
+    const cardContent = (
         <div className="group relative h-[420px] overflow-hidden rounded-md border border-[#1C1D24] cursor-pointer">
             <Image
                 src={img}
@@ -39,4 +41,10 @@ export default function DestinationCard({ name, img, circuit, badge, blurb }: De
             </div>
         </div>
     );
+
+    if (id) {
+        return <Link href={`/races/${id}`}>{cardContent}</Link>;
+    }
+
+    return cardContent;
 };

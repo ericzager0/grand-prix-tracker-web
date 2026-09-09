@@ -17,7 +17,7 @@ export interface NavbarProps {
 export default function Navbar({scrolled, menuOpen, setMenuOpen}: NavbarProps) {
     const router = useRouter();
 
-    const isLoggedIn = true; // Replace with actual authentication logic
+    const isLoggedIn = false; // Replace with actual authentication logic
 
     return (
         <header

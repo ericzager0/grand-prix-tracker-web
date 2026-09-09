@@ -1,13 +1,5 @@
 export const DESTINATIONS = [
   {
-    name: "San Pablo",
-    circuit: "Autódromo José Carlos Pace — Interlagos",
-    img: "/interlagos.jpg",
-    blurb:
-      "Curvas rápidas, tribunas pegadas a la pista y la energía más eléctrica del calendario sudamericano.",
-    badge: "Próxima carrera",
-  },
-  {
     name: "Mónaco",
     circuit: "Circuito de Mónaco — Monte Carlo",
     img: "/monaco.jpg",

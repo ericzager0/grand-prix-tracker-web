@@ -77,8 +77,8 @@ export default function WarningModal({
             </button>
             <button
               onClick={onConfirm}
-              className="inline-flex items-center justify-center rounded-sm px-6 py-2.5 text-sm font-semibold text-[#0B0B10] transition-transform hover:-translate-y-0.5"
-              style={{ backgroundColor: accentColor }}
+              className="inline-flex items-center justify-center rounded-sm px-6 py-2.5 text-sm font-semibold transition-transform hover:-translate-y-0.5"
+              style={{ backgroundColor: accentColor, color: isDanger ? "#FFFFFF" : "#0B0B10" }}
             >
               {confirmText}
             </button>

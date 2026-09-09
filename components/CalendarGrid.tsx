@@ -39,7 +39,7 @@ export default function CalendarGrid({
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
           {filteredRaces.map((race, i) => (
             <div key={i} className="animate-in fade-in slide-in-from-bottom-4 duration-500" style={{ animationDelay: `${i * 100}ms` }}>
-              <DestinationCard name={race.name} img={race.img} circuit={race.circuit} badge={race.badge} blurb={race.blurb} /> 
+              <DestinationCard id={race.id} name={race.name} img={race.img} circuit={race.circuit} badge={race.badge} blurb={race.blurb} /> 
             </div>
           ))}
         </div>

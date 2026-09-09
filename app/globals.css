@@ -46,6 +46,12 @@ body {
   to { background-position: 56px 0; }
 }
 
+@layer utilities {
+  .cursor-f1 {
+    cursor: url('/cursor-f1.png'), auto !important;
+  }
+}
+
 @layer components {
   .gpt-marquee-track {
     animation: gpt-marquee 32s linear infinite;

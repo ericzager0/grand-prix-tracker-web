@@ -1,5 +1,6 @@
 
 export interface Race {
+  id: string;
   name: string;
   circuit: string;
   img: string;
@@ -12,6 +13,7 @@ export interface Race {
 
 export const F1_CALENDAR_2026: Race[] = [
   {
+    id: "bahrain",
     name: "Bahrain GP",
     circuit: "Bahrain International Circuit",
     img: "/races/bahrain.jpg",
@@ -22,6 +24,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: true,
   },
   {
+    id: "saudi-arabian",
     name: "Saudi Arabian GP",
     circuit: "Jeddah Corniche Circuit",
     img: "/races/jedah.png",
@@ -32,6 +35,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: true,
   },
   {
+    id: "australian",
     name: "Australian GP",
     circuit: "Albert Park Circuit",
     img: "/races/albert-park.jpg",
@@ -42,6 +46,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: true,
   },
   {
+    id: "japanese",
     name: "Japanese GP",
     circuit: "Suzuka International Racing Course",
     img: "/races/Japan.jpg",
@@ -52,6 +57,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: true,
   },
   {
+    id: "chinese",
     name: "Chinese GP",
     circuit: "Shanghai International Circuit",
     img: "/races/china.png",
@@ -62,6 +68,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: true,
   },
   {
+    id: "miami",
     name: "Miami GP",
     circuit: "Miami International Autodrome",
     img: "/races/miami.png",
@@ -72,6 +79,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: true,
   },
   {
+    id: "emilia-romagna",
     name: "Emilia Romagna GP",
     circuit: "Autodromo Enzo e Dino Ferrari",
     img: "/races/imola.jpg",
@@ -82,6 +90,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: true,
   },
   {
+    id: "monaco",
     name: "Monaco GP",
     circuit: "Circuit de Monaco",
     img: "/races/monaco.jpg",
@@ -92,6 +101,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: true,
   },
   {
+    id: "canadian",
     name: "Canadian GP",
     circuit: "Circuit Gilles-Villeneuve",
     img: "/races/canada.png",
@@ -102,6 +112,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: true,
   },
   {
+    id: "spanish",
     name: "Spanish GP",
     circuit: "Circuito de Madrid IFEMA",
     img: "/races/madrid.png",
@@ -112,6 +123,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: true,
   },
   {
+    id: "austrian",
     name: "Austrian GP",
     circuit: "Red Bull Ring",
     img: "/races/austria.png",
@@ -122,6 +134,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: true,
   },
   {
+    id: "british",
     name: "British GP",
     circuit: "Silverstone Circuit",
     img: "/races/silverstone.jpg",
@@ -132,6 +145,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: true,
   },
   {
+    id: "belgian",
     name: "Belgian GP",
     circuit: "Circuit de Spa-Francorchamps",
     img: "/races/spa.png",
@@ -142,6 +156,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: true,
   },
   {
+    id: "hungarian",
     name: "Hungarian GP",
     circuit: "Hungaroring",
     img: "/races/hungary.png",
@@ -152,6 +167,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: true,
   },
   {
+    id: "dutch",
     name: "Dutch GP",
     circuit: "Circuit Zandvoort",
     img: "/races/dutch.png",
@@ -162,6 +178,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: true,
   },
   {
+    id: "italian",
     name: "Italian GP",
     circuit: "Autodromo Nazionale Monza",
     img: "/races/monza.png",
@@ -172,6 +189,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: true,
   },
   {
+    id: "azerbaijan",
     name: "Azerbaijan GP",
     circuit: "Baku City Circuit",
     img: "/races/baku.jpg",
@@ -182,6 +200,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: false,
   },
   {
+    id: "singapore",
     name: "Singapore GP",
     circuit: "Marina Bay Street Circuit",
     img: "/races/signapur.jpg",
@@ -192,6 +211,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: false,
   },
   {
+    id: "united-states",
     name: "United States GP",
     circuit: "Circuit of The Americas",
     img: "/races/austin.jpg",
@@ -202,6 +222,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: false,
   },
   {
+    id: "mexico-city",
     name: "Mexico City GP",
     circuit: "Autódromo Hermanos Rodríguez",
     img: "/races/mejico.jpg",
@@ -212,6 +233,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: false,
   },
   {
+    id: "s-o-paulo",
     name: "São Paulo GP",
     circuit: "Autódromo José Carlos Pace",
     img: "/races/interlagos.jpg",
@@ -222,6 +244,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: false,
   },
   {
+    id: "las-vegas",
     name: "Las Vegas GP",
     circuit: "Las Vegas Strip Circuit",
     img: "/races/las_vegas.jpg",
@@ -232,6 +255,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: false,
   },
   {
+    id: "qatar",
     name: "Qatar GP",
     circuit: "Lusail International Circuit",
     img: "/races/qtar.jpg",
@@ -242,6 +266,7 @@ export const F1_CALENDAR_2026: Race[] = [
     raced: false,
   },
   {
+    id: "abu-dhabi",
     name: "Abu Dhabi GP",
     circuit: "Yas Marina Circuit",
     img: "/races/yas_marina.jpg",
