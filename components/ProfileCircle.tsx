@@ -1,27 +1,53 @@
-import React from "react";
+"use client";
+
+import React, { useSyncExternalStore } from "react";
 import Image from "next/image";
 import { tireColors } from "@/utils/tireColors";
 import getRandomCompound from "@/utils/tireColors";
 
 interface AuthButtonProps {
-    isLoggedIn: boolean;
-    name?: string;
-    profilePicUrl?: string;
-    onLoginClick?: () => void;
-    onProfileClick?: () => void;
-    compound?: "soft" | "medium" | "hard" | "inter" | "full_wet";
+  isLoggedIn: boolean;
+  name?: string;
+  profilePicUrl?: string;
+  onLoginClick?: () => void;
+  onProfileClick?: () => void;
+  compound?: "soft" | "medium" | "hard" | "inter" | "full_wet";
+}
+
+const emptySubscribe = () => () => {};
+
+let cachedRandomCompound: NonNullable<AuthButtonProps["compound"]> | null =
+  null;
+
+function getClientSnapshot(): NonNullable<AuthButtonProps["compound"]> {
+  if (!cachedRandomCompound) {
+    cachedRandomCompound = getRandomCompound() as NonNullable<
+      AuthButtonProps["compound"]
+    >;
+  }
+  return cachedRandomCompound;
+}
+
+function getServerSnapshot(): NonNullable<AuthButtonProps["compound"]> {
+  return "soft";
 }
 
 export default function AuthButton({
-    isLoggedIn,
-    name = "Octavio",
-    profilePicUrl,
-    onLoginClick,
-    onProfileClick,
-    compound = getRandomCompound() as NonNullable<AuthButtonProps["compound"]>,
+  isLoggedIn,
+  name = "Octavio",
+  profilePicUrl,
+  onLoginClick,
+  onProfileClick,
+  compound,
 }: AuthButtonProps) {
+  const randomCompound = useSyncExternalStore(
+    emptySubscribe,
+    getClientSnapshot,
+    getServerSnapshot,
+  );
 
-  const stripeColor = tireColors[compound];
+  const activeCompound = compound ?? randomCompound;
+  const stripeColor = tireColors[activeCompound];
 
   if (!isLoggedIn) {
     return (

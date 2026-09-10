@@ -1,65 +1,24 @@
 "use client";
 
-import React, { useState, useEffect, useMemo } from "react";
-import { Race } from "@/utils/races";
-import { fetchEventsFromBackend } from "@/utils/events";
+import React, { useState, useMemo } from "react";
+import { useEvents } from "@/hooks/useEvents";
 import CalendarFilters from "@/components/CalendarFilters";
 import CalendarGrid from "@/components/CalendarGrid";
 
 export default function CalendarPage() {
   const currentYear = new Date().getFullYear();
-  const [races, setRaces] = useState<Race[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const {
+    races,
+    isPending: isLoading,
+    error: queryError,
+    refetch,
+  } = useEvents();
 
   const [selectedRegion, setSelectedRegion] = useState("Todos");
   const [selectedMonth, setSelectedMonth] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const loadRaces = () => {
-    setIsLoading(true);
-    setError(null);
-    fetchEventsFromBackend()
-      .then((data) => {
-        setRaces(data);
-        setIsLoading(false);
-      })
-      .catch((err: unknown) => {
-        console.error("Error al cargar eventos del calendario:", err);
-        const message =
-          err instanceof Error
-            ? err.message
-            : "Error al conectar con el servidor de eventos.";
-        setError(message);
-        setIsLoading(false);
-      });
-  };
-
-  useEffect(() => {
-    let isMounted = true;
-    fetchEventsFromBackend()
-      .then((data) => {
-        if (isMounted) {
-          setRaces(data);
-          setIsLoading(false);
-        }
-      })
-      .catch((err: unknown) => {
-        if (isMounted) {
-          console.error("Error al cargar eventos del calendario:", err);
-          const message =
-            err instanceof Error
-              ? err.message
-              : "Error al conectar con el servidor de eventos.";
-          setError(message);
-          setIsLoading(false);
-        }
-      });
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
+  const error = queryError instanceof Error ? queryError.message : null;
 
   // Filtrado y Ordenamiento
   const filteredRaces = useMemo(() => {
@@ -111,7 +70,7 @@ export default function CalendarPage() {
           onSearchChange={setSearchQuery}
           isLoading={isLoading}
           error={error}
-          onRetry={loadRaces}
+          onRetry={() => refetch()}
         />
       </div>
     </div>

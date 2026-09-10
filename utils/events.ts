@@ -1,42 +1,21 @@
 import { Race } from "./races";
+import {
+  BackendEvent,
+  EventCircuitCountry,
+  EventCircuitCity,
+  EventCircuit,
+  ApiResponse,
+  getEvents,
+  getEventById,
+} from "@/services/events";
 
-export interface EventCircuitCountry {
-  idPais: string;
-  nombre: string;
-  codigoIso: string;
-  continente: string;
-}
-
-export interface EventCircuitCity {
-  idCiudad: string;
-  nombre: string;
-  pais: EventCircuitCountry;
-}
-
-export interface EventCircuit {
-  idCircuito: string;
-  nombre: string;
-  longitudKm: number;
-  curvas: number;
-  vueltas: number;
-  mapaSvgUrl: string;
-  ciudad: EventCircuitCity;
-}
-
-export interface BackendEvent {
-  idEvento: string;
-  temporada: number;
-  fechaInicio: string; // "YYYY-MM-DD"
-  fechaFin: string; // "YYYY-MM-DD"
-  estado: string; // "Proximo", etc.
-  circuito: EventCircuit;
-}
-
-export interface ApiResponse<T> {
-  success: boolean;
-  message: string;
-  data: T;
-}
+export type {
+  BackendEvent,
+  EventCircuitCountry,
+  EventCircuitCity,
+  EventCircuit,
+  ApiResponse,
+};
 
 const MONTH_NAMES_ES = [
   "ENE",
@@ -360,44 +339,21 @@ export function mapBackendEventToRace(event: BackendEvent): Race {
   };
 }
 
+/**
+ * Consulta directa a la API de Render (sin API routes de Next.js) y mapea a Race[]
+ */
 export async function fetchEventsFromBackend(): Promise<Race[]> {
-  const res = await fetch("/api/events", {
-    headers: { Accept: "application/json" },
-  });
-
-  if (!res.ok) {
-    throw new Error(
-      `Error al obtener eventos: ${res.status} ${res.statusText}`,
-    );
-  }
-
-  const json: ApiResponse<BackendEvent[]> = await res.json();
-
-  if (!json.success || !Array.isArray(json.data)) {
-    throw new Error(
-      json.message || "Estructura de respuesta inválida del servidor",
-    );
-  }
-
-  return json.data.map(mapBackendEventToRace);
+  const data = await getEvents();
+  return data.map(mapBackendEventToRace);
 }
 
+/**
+ * Consulta directa a la API de Render para un único evento (sin API routes de Next.js)
+ */
 export async function fetchEventByIdFromBackend(
   id: string,
 ): Promise<Race | null> {
-  try {
-    const res = await fetch(`/api/events/${encodeURIComponent(id)}`, {
-      headers: { Accept: "application/json" },
-    });
-
-    if (!res.ok) return null;
-
-    const json: ApiResponse<BackendEvent> = await res.json();
-    if (!json.success || !json.data) return null;
-
-    return mapBackendEventToRace(json.data);
-  } catch (error) {
-    console.error("Error fetching single event:", error);
-    return null;
-  }
+  const event = await getEventById(id);
+  if (!event) return null;
+  return mapBackendEventToRace(event);
 }
